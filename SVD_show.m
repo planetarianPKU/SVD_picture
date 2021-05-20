@@ -20,10 +20,7 @@ n=1;
 set(gcf,'unit','normalized','position',[0,0,1,1]);
 set(gcf,'color','white');
 
-out = VideoWriter('SVD_photo.avi');
-FrameRate=10;
-out.FrameRate=FrameRate;
-open(out);
+
 
 
 while n <  min(size(S1))
@@ -70,14 +67,9 @@ final_show=zeros(N(1),3*N(2),3);
         
   
         imagesc(canvasShow1);  axis equal tight; colormap gray;
-        set(gca,'ytick',[],'yticklabel',[])
-set(gca,'xtick',[],'xticklabel',[])
-box off
+
  title([ 'n = ' num2str(n) ' to '  num2str(n+nWaves-1)])
 
-                 F=getframe(gcf);
-%  
-     writeVideo(out, F);
     end
     
     for L = N(2) + [(min(max(1, round((1 + sin(linspace(-pi/2, pi/2, 100/min(20, n))))/2*N(2))), N(2)+1))   (N(2)+1)]
@@ -93,22 +85,14 @@ box off
         final_show(:,:,3)=canvasShow3;
 
         imagesc(canvasShow1);  axis equal tight; colormap gray;
-set(gca,'ytick',[],'yticklabel',[])
-set(gca,'xtick',[],'xticklabel',[])
-box off
+
  title([ 'n = ' num2str(n) ' to '  num2str(n+nWaves-1)])
-                 F=getframe(gcf);
-%  
-     writeVideo(out, F);
+
     end
     newIm1 = newIm1 + I1_cur;
         newIm2 = newIm2 + I2_cur;
     newIm3 = newIm3 + I3_cur;
 n=n+nWaves;
 end
-    
-    
-         close(out)
 
     
-%I=I(:,:,1);
